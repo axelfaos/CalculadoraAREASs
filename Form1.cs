@@ -127,5 +127,27 @@ namespace CalculadoraAREAS
                 }
             }
         }
+
+        private void rombo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Solicitar la diagonal mayor
+                double diagonalMayor = double.Parse(Microsoft.VisualBasic.Interaction.InputBox("Introduce la diagonal mayor del rombo:", "Diagonal mayor"));
+
+                // Solicitar la diagonal menor
+                double diagonalMenor = double.Parse(Microsoft.VisualBasic.Interaction.InputBox("Introduce la diagonal menor del rombo:", "Diagonal menor"));
+
+                // Calcular el área del rombo
+                double areaRombo = (diagonalMayor * diagonalMenor) / 2;
+
+                // Mostrar el resultado
+                MessageBox.Show($"El área del rombo es: {areaRombo}", "Resultado");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al calcular el área: {ex.Message}", "Error");
+            }
+        }
     }
 }

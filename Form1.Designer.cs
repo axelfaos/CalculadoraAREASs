@@ -37,6 +37,7 @@
             label1 = new Label();
             label2 = new Label();
             actualizar = new Button();
+            rombo = new Button();
             SuspendLayout();
             // 
             // triangulo
@@ -136,11 +137,26 @@
             actualizar.UseVisualStyleBackColor = true;
             actualizar.Click += actualizar_Click;
             // 
+            // rombo
+            // 
+            rombo.BackColor = Color.Transparent;
+            rombo.BackgroundImage = (Image)resources.GetObject("rombo.BackgroundImage");
+            rombo.BackgroundImageLayout = ImageLayout.Zoom;
+            rombo.FlatStyle = FlatStyle.Flat;
+            rombo.ForeColor = Color.Transparent;
+            rombo.Location = new Point(312, 370);
+            rombo.Name = "rombo";
+            rombo.Size = new Size(152, 103);
+            rombo.TabIndex = 8;
+            rombo.UseVisualStyleBackColor = false;
+            rombo.Click += rombo_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 513);
+            Controls.Add(rombo);
             Controls.Add(actualizar);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -165,5 +181,6 @@
         private Label label1;
         private Label label2;
         private Button actualizar;
+        private Button rombo;
     }
 }
