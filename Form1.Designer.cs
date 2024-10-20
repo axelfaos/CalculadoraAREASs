@@ -134,6 +134,7 @@
             actualizar.TabIndex = 7;
             actualizar.Text = "actualizar";
             actualizar.UseVisualStyleBackColor = true;
+            actualizar.Click += actualizar_Click;
             // 
             // Form1
             // 

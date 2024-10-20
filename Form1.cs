@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace CalculadoraAREAS
 {
     public partial class Form1 : Form
@@ -74,6 +76,56 @@ namespace CalculadoraAREAS
         private void label1_Click(object sender, EventArgs e)
         {
             // Evento vacío
+        }
+
+        private void actualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Ruta del directorio donde está el repositorio
+                string repoPath = @"C:\Users\axelf\Documents\Visual Studio 2022\Projects\CalculadoraAREAS";
+
+                // 1. Ejecutar "git add ."
+                EjecutarComandoGit("git add .", repoPath);
+
+                // 2. Ejecutar "git commit -m 'Actualización desde la aplicación'"
+                EjecutarComandoGit("git commit -m \"Actualización desde la aplicación\"", repoPath);
+
+                // 3. Ejecutar "git push origin master"
+                EjecutarComandoGit("git push origin master", repoPath);
+
+                MessageBox.Show("Repositorio actualizado con éxito en GitHub.", "Éxito");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al actualizar el repositorio: {ex.Message}", "Error");
+            }
+        }
+
+        private void EjecutarComandoGit(string comando, string directorioTrabajo)
+        {
+            ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", "/c " + comando);
+            processInfo.WorkingDirectory = directorioTrabajo;
+            processInfo.RedirectStandardOutput = true;
+            processInfo.RedirectStandardError = true;
+            processInfo.UseShellExecute = false;
+            processInfo.CreateNoWindow = true;
+
+            using (Process process = new Process())
+            {
+                process.StartInfo = processInfo;
+                process.Start();
+
+                string resultado = process.StandardOutput.ReadToEnd();
+                string error = process.StandardError.ReadToEnd();
+
+                process.WaitForExit();
+
+                if (!string.IsNullOrEmpty(error))
+                {
+                    throw new Exception($"Error en Git: {error}");
+                }
+            }
         }
     }
 }
